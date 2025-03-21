@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨奥的个人简历</title>
+    <style>
+        /* 全局样式 */
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #f5f5f7;
+            --text-color: #1d1d1f;
+            --text-secondary: #86868b;
+            --highlight: #06c;
+            --border-color: #e6e6e6;
+            --success-color: #34c759;
+            --gradient-start: rgba(6, 182, 212, 0.9);
+            --gradient-end: rgba(59, 130, 246, 0.9);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* 头部样式 */
+        header {
+            padding: 80px 0 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .profile {
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s;
+        }
+        
+        .job-title {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 24px;
+            font-weight: 500;
+            opacity: 0.9;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s;
+        }
+        
+        .personal-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+            animation: fadeIn 1.2s;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            animation: fadeIn 1.4s;
+        }
+        
+        .contact a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 主要内容样式 */
+        main {
+            padding: 64px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        section {
+            margin-bottom: 64px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            border-bottom: 0;
+            padding-bottom: 0;
+            display: inline-block;
+            position: relative;
+            color: var(--primary-color);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 2px;
+        }
+        
+        .education-item, .project-item, .skills-item {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+        
+        .education-item:hover, .project-item:hover, .skills-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .education-item:last-child, .project-item:last-child, .skills-item:last-child {
+            border-bottom: none;
+        }
+        
+        h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--highlight);
+        }
+        
+        .date-range {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 16px;
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+        }
+        
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .course {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .course:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .score {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+        
+        .award-list {
+            margin-top: 16px;
+        }
+        
+        .award-list li {
+            margin-bottom: 12px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 28px;
+            transition: transform 0.2s;
+        }
+        
+        .award-list li:hover {
+            transform: translateX(5px);
+        }
+        
+        .award-list li:before {
+            content: "🏆";
+            position: absolute;
+            left: 0;
+        }
+        
+        .tech-stack {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .tech-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .responsibility-list {
+            margin-top: 16px;
+        }
+        
+        .responsibility-list li {
+            margin-bottom: 12px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 28px;
+            transition: transform 0.2s;
+        }
+        
+        .responsibility-list li:hover {
+            transform: translateX(5px);
+        }
+        
+        .responsibility-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .skill-category {
+            margin-bottom: 24px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .skill {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .self-intro {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-color);
+            max-width: 90%;
+            margin: 0 auto 48px auto;
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .self-intro::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        .self-intro::after {
+            content: '"';
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+            font-size: 60px;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        footer .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .job-title {
+                font-size: 20px;
+            }
+            
+            header {
+                padding: 60px 0 30px;
+            }
+            
+            .personal-info {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            section, .self-intro {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <h1>杨奥</h1>
+                <div class="job-title">软件开发工程师</div>
+                <div class="personal-info">
+                    <div class="info-item">年龄：19 | 性别：男 | 民族：汉</div>
+                    <div class="info-item">学历：本科 | 院校：湖北文理学院理工学院 | 专业：计算机科学与技术</div>
+                </div>
+                <div class="contact">
+                    <a href="tel:13257133441">📱 132-5713-3441</a>
+                    <a href="mailto:1332958292@qq.com">✉️ 1332958292@qq.com</a>
+                    <a href="https://Ya1999-hub.github.io" target="_blank">🌐 GitHub/个人博客</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <p class="self-intro">
+            具备扎实的计算机基础知识和编程能力，善于学习新技术，有较强的解决问题能力。在校期间注重理论与实践相结合，通过多个项目实践积累了软件开发经验。具有良好的团队协作精神和沟通能力，能够快速适应工作环境。
+        </p>
+        
+        <section id="education">
+            <h2>教育背景</h2>
+            <div class="education-item">
+                <h3>湖北文理学院理工学院</h3>
+                <div class="date-range">2022 - 2025</div>
+                <p>专业：计算机科学与技术（本科）</p>
+                
+                <div class="course-list">
+                    <div class="course">软件工程 <span class="score">87分</span></div>
+                    <div class="course">操作系统 <span class="score">91分</span></div>
+                    <div class="course">数据库系统 <span class="score">84分</span></div>
+                    <div class="course">计算机网络 <span class="score">91分</span></div>
+                    <div class="course">Java Web程序设计 <span class="score">95分</span></div>
+                    <div class="course">程序设计基础 <span class="score">91分</span></div>
+                    <div class="course">计算机导论 <span class="score">85分</span></div>
+                    <div class="course">数字逻辑 <span class="score">95分</span></div>
+                    <div class="course">线性代数 <span class="score">98分</span></div>
+                </div>
+                
+                <div class="award-list">
+                    <h3>获奖情况</h3>
+                    <ul>
+                        <li>中国大学生计算机设计大赛中南地区赛三等奖</li>
+                        <li>2022-2024三等综合素质奖学金（连续两年）</li>
+                        <li>2023-2024学年三好学生</li>
+                        <li>校级网页设计大赛三等奖</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>项目经验</h2>
+            <div class="project-item">
+                <h3>畅游襄阳Web项目</h3>
+                <div class="tech-stack">
+                    <div class="tech-badge">Vue3</div>
+                    <div class="tech-badge">Spring Boot</div>
+                    <div class="tech-badge">MySQL</div>
+                    <div class="tech-badge">阿里云</div>
+                </div>
+                <p>主要展示湖北襄阳地区的旅游景点、美食、历史文化等信息。项目采用现代化前端技术栈构建，为用户提供襄阳旅游资源浏览和行程规划的平台。</p>
+                <div class="responsibility-list">
+                    <h3>负责内容</h3>
+                    <ul>
+                        <li>核心业务逻辑开发</li>
+                        <li>部分用户界面开发与交互</li>
+                        <li>部分后端和数据库设计与实现</li>
+                        <li>部分文档撰写</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h3>社区服务微信小程序项目</h3>
+                <div class="tech-stack">
+                    <div class="tech-badge">微信小程序</div>
+                    <div class="tech-badge">云开发</div>
+                    <div class="tech-badge">云数据库</div>
+                    <div class="tech-badge">云函数</div>
+                </div>
+                <p>基于微信云开发的社区服务综合平台小程序，旨在为社区居民提供多方面的便捷服务。</p>
+                <div class="responsibility-list">
+                    <h3>负责内容</h3>
+                    <ul>
+                        <li>AI聊天功能与信息展示</li>
+                        <li>部分用户界面开发与交互</li>
+                        <li>部分微信云开发</li>
+                        <li>实现前后端数据交互</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>专业技能</h2>
+            <div class="skills-item">
+                <div class="skill-category">
+                    <h3>编程技能</h3>
+                    <div class="skill-list">
+                        <div class="skill">C</div>
+                        <div class="skill">Java</div>
+                        <div class="skill">Python</div>
+                        <div class="skill">HTML</div>
+                        <div class="skill">CSS</div>
+                        <div class="skill">JavaScript</div>
+                        <div class="skill">MySQL</div>
+                        <div class="skill">Spring Boot</div>
+                        <div class="skill">MyBatis</div>
+                        <div class="skill">数据结构</div>
+                        <div class="skill">算法</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>办公技能</h3>
+                    <div class="skill-list">
+                        <div class="skill">PPT</div>
+                        <div class="skill">Word</div>
+                        <div class="skill">Excel</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 杨奥个人简历 | 设计灵感来自Apple与Google</p>
+        </div>
+    </footer>
+</body>
+</html> 
